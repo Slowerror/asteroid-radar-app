@@ -22,6 +22,9 @@ class MainFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
+        val adapter = AsteroidAdapter()
+        binding.asteroidRecyclerView.adapter = adapter
+
         return binding.root
     }
 }

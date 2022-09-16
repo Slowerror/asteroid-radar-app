@@ -9,11 +9,10 @@ import com.slowerror.asteroidradar.models.Asteroid
 class AsteroidAdapter : RecyclerView.Adapter<AsteroidAdapter.AsteroidViewHolder>() {
 
     private var asteroidsList = listOf<Asteroid>()
-
-    fun setAsteroid(data: List<Asteroid>) {
-        this.asteroidsList = data
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     class AsteroidViewHolder(var binding: ItemAsteroidBinding)
         : RecyclerView.ViewHolder(binding.root) {
