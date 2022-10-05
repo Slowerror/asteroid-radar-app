@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.slowerror.asteroidradar.R
 import com.slowerror.asteroidradar.databinding.FragmentMainBinding
@@ -24,7 +25,10 @@ class MainFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
-        val adapter = AsteroidAdapter()
+        val adapter = AsteroidAdapter(AsteroidListener { asteroid ->
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(asteroid))
+        })
+
         val linearLayout = LinearLayoutManager(requireContext())
 
         binding.asteroidRecyclerView.layoutManager = linearLayout

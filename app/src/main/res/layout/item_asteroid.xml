@@ -8,13 +8,18 @@
         <variable
             name="asteroid"
             type="com.slowerror.asteroidradar.models.Asteroid" />
+        
+        <variable
+            name="clickListener"
+            type="com.slowerror.asteroidradar.screens.main.AsteroidListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/space_4x"
-        android:background="@color/app_background">
+        android:background="@color/app_background"
+        android:onClick="@{() -> clickListener.onClick(asteroid)}">
 
         <TextView
             android:id="@+id/codenameTitle"

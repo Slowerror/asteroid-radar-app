@@ -19,5 +19,9 @@
         android:id="@+id/detailFragment"
         android:name="com.slowerror.asteroidradar.screens.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="selectedAsteroid"
+            app:argType="com.slowerror.asteroidradar.models.Asteroid" />
+    </fragment>
 </navigation>
