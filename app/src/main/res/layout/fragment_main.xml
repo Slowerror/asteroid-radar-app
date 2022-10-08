@@ -30,8 +30,9 @@
                 android:layout_height="@dimen/image_main_height"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
-                app:srcCompat="@drawable/placeholder_picture_of_day"
-                android:contentDescription="@string/name_image_main" />
+                android:contentDescription="@string/name_image_main"
+                imageAsteroidOfDay="@{mainViewModel.pictureOfDay}"
+                tools:srcCompat="@drawable/placeholder_picture_of_day" />
 
             <TextView
                 android:id="@+id/textImageOfTheDay"
@@ -41,7 +42,8 @@
                 android:padding="@dimen/space_4x"
                 android:textColor="@color/white"
                 android:background="#55010613"
-                android:text="@string/name_image_main" />
+                android:text="@{mainViewModel.pictureOfDay.title}"
+                tools:text="@string/name_image_main"/>
 
         </FrameLayout>
 

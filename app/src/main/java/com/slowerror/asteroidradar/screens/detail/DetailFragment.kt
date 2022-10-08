@@ -43,5 +43,4 @@ class DetailFragment : Fragment() {
             .create()
             .show()
 
-
 }
