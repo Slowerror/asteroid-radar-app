@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_0_5x">1dp</dimen>
+    <dimen name="space_1x">2dp</dimen>
+    <dimen name="space_2x">4dp</dimen>
+    <dimen name="space_3x">8dp</dimen>
+    <dimen name="space_4x">16dp</dimen>
+    <dimen name="space_5x">32dp</dimen>
+    <dimen name="space_6x">48dp</dimen>
+    <dimen name="space_7x">64dp</dimen>
+    <dimen name="space_8x">128dp</dimen>
+
+    <dimen name="image_main_height">220dp</dimen>
+</resources>
