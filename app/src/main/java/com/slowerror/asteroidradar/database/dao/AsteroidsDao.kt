@@ -1,5 +1,6 @@
 package com.slowerror.asteroidradar.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,14 +12,17 @@ import com.slowerror.asteroidradar.models.Asteroid
 interface AsteroidsDao {
 
     @Query("SELECT * FROM asteroids ORDER BY closeApproachData")
-    suspend fun getAllAsteroids(): List<Asteroid>
+    fun getAllAsteroids(): LiveData<List<Asteroid>>
 
     @Query("SELECT * FROM asteroids WHERE closeApproachData = :today ORDER BY closeApproachData")
-    suspend fun getAsteroidsToday(today: String): List<Asteroid>
+    fun getAsteroidsToday(today: String): LiveData<List<Asteroid>>
 
     @Query("SELECT * FROM asteroids WHERE closeApproachData >= :starDay and closeApproachData <= :endDay ORDER BY closeApproachData")
-    suspend fun getAsteroidsFromWeek(starDay: String, endDay: String): List<Asteroid>
+    fun getAsteroidsFromWeek(starDay: String, endDay: String): LiveData<List<Asteroid>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAsteroids(asteroid: List<AsteroidEntity>)
+
+    @Query("DELETE FROM asteroids WHERE closeApproachData < :today")
+    fun deleteAsteroidsPreviousToday(today: String)
 }

@@ -9,20 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.slowerror.asteroidradar.R
 import com.slowerror.asteroidradar.databinding.FragmentMainBinding
-import com.slowerror.asteroidradar.network.NetworkModule
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,12 +38,11 @@ class MainFragment : Fragment() {
         binding.asteroidRecyclerView.layoutManager = linearLayout
         binding.asteroidRecyclerView.adapter = adapter
 
-        viewModel.asteroids.observe(viewLifecycleOwner, Observer {
-            it.let {
+        viewModel.displayAsteroids.observe(viewLifecycleOwner, Observer {
+            it?.let {
                 adapter.submitList(it)
             }
         })
-
 
         return binding.root
     }
@@ -68,9 +62,18 @@ class MainFragment : Fragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
-                    R.id.showNextWeekAsteroids -> {true}
-                    R.id.showTodayAsteroids -> {true}
-                    R.id.showSavedAsteroids -> {true}
+                    R.id.showNextWeekAsteroids -> {
+                        viewModel.showWeekAsteroids()
+                        true
+                    }
+                    R.id.showTodayAsteroids -> {
+                        viewModel.showTodayAsteroids()
+                        true
+                    }
+                    R.id.showSavedAsteroids -> {
+                        viewModel.showSavedAsteroids()
+                        true
+                    }
                     else -> false
                 }
             }

@@ -20,6 +20,8 @@ object NetworkModule {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val api: AsteroidApiService = retrofit.create()
+    val api: AsteroidApiService by lazy {
+        retrofit.create()
+    }
 
 }
