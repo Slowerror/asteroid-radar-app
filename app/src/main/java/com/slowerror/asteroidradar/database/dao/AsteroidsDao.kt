@@ -24,5 +24,5 @@ interface AsteroidsDao {
     suspend fun insertAsteroids(asteroid: List<AsteroidEntity>)
 
     @Query("DELETE FROM asteroids WHERE closeApproachData < :today")
-    fun deleteAsteroidsPreviousToday(today: String)
+    suspend fun deleteAsteroidsPreviousToday(today: String)
 }
