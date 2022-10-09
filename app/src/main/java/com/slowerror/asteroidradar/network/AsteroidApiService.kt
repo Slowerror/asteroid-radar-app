@@ -2,6 +2,7 @@ package com.slowerror.asteroidradar.network
 
 import com.slowerror.asteroidradar.Constants.API_KEY
 import com.slowerror.asteroidradar.models.PictureOfDay
+import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ interface AsteroidApiService {
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
         @Query("api_key") apiKey: String = API_KEY
-    ): Response<Body>
+    ): String
 
     @GET("planetary/apod")
     suspend fun getPictureOfDay(

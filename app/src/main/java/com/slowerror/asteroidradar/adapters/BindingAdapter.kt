@@ -46,12 +46,16 @@ fun TextView.bindTextRelativeVelocityValue(number: Double) {
 
 @BindingAdapter("imageAsteroidOfDay")
 fun ImageView.bindImageAsteroidOfDay(picture: PictureOfDay?) {
-    Picasso.get()
-        .load(picture?.url)
-        .placeholder(R.drawable.loading_animation)
-        .error(R.drawable.ic_baseline_broken_image)
-        .fit()
-        .centerCrop()
-        .into(this)
+    picture.let {
+        Picasso.get()
+            .load(it?.url)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_baseline_broken_image)
+            .fit()
+            .centerCrop()
+            .into(this)
+    }
+
+
 
 }
