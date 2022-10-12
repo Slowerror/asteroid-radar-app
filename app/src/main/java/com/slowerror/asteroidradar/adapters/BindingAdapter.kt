@@ -45,14 +45,14 @@ fun TextView.bindTextRelativeVelocityValue(number: Double) {
 }
 
 @BindingAdapter("imageAsteroidOfDay")
-fun ImageView.bindImageAsteroidOfDay(imageUrl: String?) {
-    imageUrl?.let {
-        val imgUri = it.toUri().buildUpon().scheme("https").build()
+fun ImageView.bindImageAsteroidOfDay(picture: PictureOfDay?) {
+    picture?.let {
+        val url = picture.url
+        val imgUri = url.toUri().buildUpon().scheme("https").build()
         Picasso.get()
             .load(imgUri)
             .placeholder(R.drawable.loading_animation)
             .error(R.drawable.ic_baseline_broken_image)
             .into(this)
     }
-
 }

@@ -30,8 +30,8 @@
                 android:layout_height="@dimen/image_main_height"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
-                android:contentDescription="@{mainViewModel.pictureTitle}"
-                app:imageAsteroidOfDay="@{mainViewModel.pictureUrl}"
+                android:contentDescription="@{mainViewModel.pictureOfDay.title}"
+                app:imageAsteroidOfDay="@{mainViewModel.pictureOfDay}"
                 app:srcCompat="@drawable/loading_animation" />
 
             <TextView
@@ -42,7 +42,7 @@
                 android:padding="@dimen/space_4x"
                 android:textColor="@color/white"
                 android:background="#55010613"
-                android:text="@{mainViewModel.pictureTitle}"
+                android:text="@{mainViewModel.pictureOfDay.title}"
                 tools:text="@string/name_image_main"/>
 
         </FrameLayout>
@@ -51,6 +51,7 @@
             android:id="@+id/asteroidRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:padding="@dimen/space_3x"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintTop_toBottomOf="@id/imageViewContainer"
