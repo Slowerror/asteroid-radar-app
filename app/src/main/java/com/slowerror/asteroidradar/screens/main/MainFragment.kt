@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.slowerror.asteroidradar.R
@@ -38,11 +37,11 @@ class MainFragment : Fragment() {
         binding.asteroidRecyclerView.layoutManager = linearLayout
         binding.asteroidRecyclerView.adapter = adapter
 
-        viewModel.displayAsteroids.observe(viewLifecycleOwner, Observer {
+        viewModel.asteroids.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.submitList(it)
             }
-        })
+        }
 
         return binding.root
     }
@@ -61,21 +60,14 @@ class MainFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when (menuItem.itemId) {
-                    R.id.showNextWeekAsteroids -> {
-                        viewModel.showWeekAsteroids()
-                        true
+                viewModel.updateFilter(
+                    when (menuItem.itemId) {
+                        R.id.showNextWeekAsteroids -> FilterAsteroids.WEEK
+                        R.id.showTodayAsteroids -> FilterAsteroids.TODAY
+                        else -> FilterAsteroids.SAVED
                     }
-                    R.id.showTodayAsteroids -> {
-                        viewModel.showTodayAsteroids()
-                        true
-                    }
-                    R.id.showSavedAsteroids -> {
-                        viewModel.showSavedAsteroids()
-                        true
-                    }
-                    else -> false
-                }
+                )
+                return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }

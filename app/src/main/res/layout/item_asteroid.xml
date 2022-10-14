@@ -17,12 +17,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_4x"
+        android:padding="@dimen/space_3x"
         android:background="@color/app_background"
         android:onClick="@{() -> clickListener.onClick(asteroid)}">
 
         <TextView
             android:id="@+id/codenameTitle"
+            style="?attr/textAppearanceHeadline6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{asteroid.codename}"
@@ -35,6 +36,7 @@
 
         <TextView
             android:id="@+id/closeApproachData"
+            style="?attr/textAppearanceSubtitle2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_2x"
